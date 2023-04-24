@@ -124,6 +124,9 @@ public class TameableDragon extends TamableAnimal implements Saddleable, FlyingA
         flyingNavigation = new FlyingPathNavigation(this, level);
         groundNavigation = new GroundPathNavigation(this, level);
 
+        flyingNavigation.setCanFloat(true);
+        groundNavigation.setCanFloat(true);
+
         navigation = groundNavigation;
     }
 
@@ -148,6 +151,7 @@ public class TameableDragon extends TamableAnimal implements Saddleable, FlyingA
     protected void registerGoals() // TODO: Much Smarter AI and features
     {
 //        goalSelector.addGoal(1, new DragonLandGoal(this));
+        goalSelector.addGoal(1, new FloatGoal(this));
         goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
         goalSelector.addGoal(3, new MeleeAttackGoal(this, 1, true));
         goalSelector.addGoal(4, new DragonFollowParentGoal(this, 1d));
